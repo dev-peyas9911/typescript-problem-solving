@@ -29,12 +29,38 @@ function checkType(value: StringOrNumber): "String" | "Number" {
 console.log(checkType("Hello"));
 console.log(checkType(25));
 
-
 // Problem 4
 
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
-    return obj[key];
+  return obj[key];
 }
 
 const user = { id: 1, name: "John Doe", age: 21 };
 console.log(getProperty(user, "name"));
+
+// Problem 5
+
+interface Book {
+    title: string;
+    author: string;
+    publishedYear: number;
+}
+
+interface BookWithReadStatus extends Book {
+    isRead: boolean;
+}
+
+function toggleReadStatus(book: Book): BookWithReadStatus {
+    return {
+        ...book,
+        isRead: true
+    }
+} 
+
+const myBook: Book = { 
+    title: "TypeScript Guide", 
+    author: "Jane Doe", 
+    publishedYear: 2024 
+};
+
+console.log(toggleReadStatus(myBook));
